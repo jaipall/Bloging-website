@@ -1,62 +1,66 @@
-# 📝 Blogin — MERN-Powered Blogging Platform
+# 📝 Blogging Website
 
-A modern, full-stack blogging platform built with the MERN stack. Designed with a clean, dark UI for both content creators and readers.
+A full-stack **Blogging Platform** built with the **MERN stack** – MongoDB, Express.js, React.js, and Node.js.
 
-## 🚀 Tech Stack
-
-- **Frontend:** React (Vite) + Tailwind CSS  
-- **Backend:** Node.js + Express.js  
-- **Database:** MongoDB  
-- **Authentication:** JWT (JSON Web Tokens)  
-- **State Management:** Redux Toolkit  
+This platform empowers users to **create, explore, and manage blog posts** through an elegant, responsive, and role-based interface. Whether you're a content creator or a reader, this project combines simplicity with functionality.
 
 ---
 
-## ✨ Features
+## 🚀 Features
 
-- 🔐 **Authentication & Authorization**
-  - JWT-based login/logout
-  - Role-based access control (Admin/User)
-
-- 📝 **Admin Capabilities**
-  - Create, update, and delete blog posts
-  - Track blog metrics: likes, comments, views
-
-- 📚 **User Experience**
-  - Read blogs, leave comments, and like posts
-  - Clean and minimal reading interface
-
-- 📈 **Dashboard**
-  - User profile with statistics
-  - Total views, comments, and likes
+- 🔐 **User Authentication** (Register / Login / Logout)
+- ✍️ **Create, Edit, Delete Blogs**
+- 🔎 **Search & Browse Blogs by Category**
+- 📊 **User Dashboard** with Personal Metrics
+- 🧑‍💼 **Admin Panel** with Enhanced Controls *(Coming Soon)*
+- 📦 **MongoDB** for Blog & User Data Storage
+- 🌐 **JWT Authentication** for Secure Sessions
+- 🎨 **Responsive UI** with TailwindCSS & ShadCN
+- 🖼️ **Image Uploads** using Multer
+- 🔔 Toast Notifications with React Hot Toast
 
 ---
 
 ## 🖼️ Screenshots
 
-### 🏠 Home Page  
-Welcome message and trending blog listings  
-![Home Page](./public/Home_Page(blog).png)
+### 🏠 Home Page
+> A modern, inviting homepage showcasing blog categories and featured articles.
+
+![Home Page](./assets/home_page.png)
 
 ---
 
-### 📚 Blog Listing Page  
-Explore all published blogs  
-![Blog Page](./public/blog_page.png)
+### 🔐 Login Page
+> Simple and clean login interface for secure access.
+
+![Login Page](./assets/login_page.png)
 
 ---
 
-### 👤 Profile Dashboard  
-Manage user profile, view blog stats  
-![Profile Page](./public/Screenshot 2025-07-15 175620.png)
+### 🧑‍💻 Profile Page
+> Manage your profile, social links, and view personal blog stats.
+
+![Profile Page](./assets/profile_page.png)
 
 ---
 
-### 📝 Admin Blog Upload Page  
-Admin interface to post new blogs  
-![Admin Blog Upload](./public/Screenshot 2025-07-15 181936.png)
+### 📚 Blogs Page
+> Explore the latest blogs from authors. Beautiful card layout with metadata.
+
+![Blogs Page](./assets/blog_page.png)
 
 ---
 
-## 📂 Folder Structure
+## 🛠️ Tech Stack
+
+| Layer        | Technologies                                  |
+|--------------|-----------------------------------------------|
+| 💻 Frontend   | React.js, React Router, Axios, Toastify       |
+| 🔧 Backend    | Node.js, Express.js, JWT, Multer              |
+| 🛢️ Database   | MongoDB, Mongoose                             |
+| 🎨 Styling    | Tailwind CSS, ShadCN UI                       |
+| ⚙️ Others     | Redux Toolkit, Dotenv, Bcrypt.js              |
+
+---
+
 
