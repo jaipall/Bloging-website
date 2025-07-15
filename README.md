@@ -1,53 +1,52 @@
-# 📝 Blogging Website
+# 📝 MERN Blogging Website
 
-A full-stack **Blogging Platform** built with the **MERN stack** – MongoDB, Express.js, React.js, and Node.js.
+A full-stack **Blogging Platform** built with the **MERN stack** — MongoDB, Express.js, React.js, and Node.js.
 
-This platform empowers users to **create, explore, and manage blog posts** through an elegant, responsive, and role-based interface. Whether you're a content creator or a reader, this project combines simplicity with functionality.
+This platform empowers users to create, explore, and manage blog posts through a clean, secure, and responsive interface. Whether you're an admin publishing or a user reading, this app balances control with great UX.
 
 ---
 
 ## 🚀 Features
 
-- 🔐 **User Authentication** (Register / Login / Logout)
-- ✍️ **Create, Edit, Delete Blogs**
-- 🔎 **Search & Browse Blogs by Category**
-- 📊 **User Dashboard** with Personal Metrics
-- 🧑‍💼 **Admin Panel** with Enhanced Controls *(Coming Soon)*
-- 📦 **MongoDB** for Blog & User Data Storage
-- 🌐 **JWT Authentication** for Secure Sessions
-- 🎨 **Responsive UI** with TailwindCSS & ShadCN
+- 🔐 **JWT Authentication** — Register, Login, Logout
+- 📝 **Create, Edit, Delete Blogs** (Admin only)
+- 📖 **Browse Blogs** — Clean UI with blog metadata
+- 📦 **MongoDB + Mongoose** for persistent data
+- 🌐 **Role-Based Access** (Admin/User)
+- 💬 **Commenting System** *(Coming Soon!)*
+- 🎨 **Responsive Design** with TailwindCSS & ShadCN
 - 🖼️ **Image Uploads** using Multer
-- 🔔 Toast Notifications with React Hot Toast
+- 🔔 **Toast Notifications** for UX feedback
 
 ---
 
 ## 🖼️ Screenshots
 
-### 🏠 Home Page
-> A modern, inviting homepage showcasing blog categories and featured articles.
+### 🏠 Home Page  
+> Beautiful landing page for exploring blogs.
 
-![Home Page](./assets/home_page.png)
-
----
-
-### 🔐 Login Page
-> Simple and clean login interface for secure access.
-
-![Login Page](./assets/login_page.png)
+![Home Page](https://res.cloudinary.com/dtjjgiitl/image/upload/q_auto:good,f_auto,fl_progressive/v1752586502/aldwymiw15ih1u0p1tj6.jpg)
 
 ---
 
-### 🧑‍💻 Profile Page
-> Manage your profile, social links, and view personal blog stats.
+### 🔐 Login Page  
+> Secure login with minimal UI.
 
-![Profile Page](./assets/profile_page.png)
+![Login Page](https://res.cloudinary.com/dtjjgiitl/image/upload/q_auto:good,f_auto,fl_progressive/v1752586543/ilbd4ua776odwvkijamc.jpg)
 
 ---
 
-### 📚 Blogs Page
-> Explore the latest blogs from authors. Beautiful card layout with metadata.
+### 🧑‍💻 Profile Page  
+> User dashboard with profile and blog stats.
 
-![Blogs Page](./assets/blog_page.png)
+![Profile Page](https://res.cloudinary.com/dtjjgiitl/image/upload/q_auto:good,f_auto,fl_progressive/v1752586585/yjqpsmjw76a2n99qrrfo.jpg)
+
+---
+
+### 📚 Blog Listing Page  
+> Scroll through curated blog posts.
+
+![Blog Page](https://res.cloudinary.com/dtjjgiitl/image/upload/q_auto:good,f_auto,fl_progressive/v1752586607/syhr3kv2pciawevwqyle.jpg)
 
 ---
 
@@ -55,12 +54,13 @@ This platform empowers users to **create, explore, and manage blog posts** throu
 
 | Layer        | Technologies                                  |
 |--------------|-----------------------------------------------|
-| 💻 Frontend   | React.js, React Router, Axios, Toastify       |
+| 💻 Frontend   | React.js, React Router, Redux Toolkit, Axios  |
 | 🔧 Backend    | Node.js, Express.js, JWT, Multer              |
 | 🛢️ Database   | MongoDB, Mongoose                             |
 | 🎨 Styling    | Tailwind CSS, ShadCN UI                       |
-| ⚙️ Others     | Redux Toolkit, Dotenv, Bcrypt.js              |
+| ⚙️ Tools      | Dotenv, Bcrypt.js, Cloudinary                 |
 
 ---
+
 
 
