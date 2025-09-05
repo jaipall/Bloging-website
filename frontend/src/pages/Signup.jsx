@@ -28,7 +28,20 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user);
+    // basic client-side validation to avoid 400s
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!user.firstName || !user.lastName || !user.email || !user.password) {
+      toast.error("All fields are required");
+      return;
+    }
+    if (!emailRegex.test(user.email)) {
+      toast.error("Invalid email");
+      return;
+    }
+    if (user.password.length < 6) {
+      toast.error("Password must be at least 6 characters");
+      return;
+    }
 
     try {
       const response = await http.post(`/api/v1/user/register`, user);
@@ -36,11 +49,13 @@ const Signup = () => {
         navigate("/login");
         toast.success(response.data.message);
       } else {
-        toast.error(response.data.message);
+        toast.error(response.data.message || "Registration failed");
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message);
+      const msg =
+        error.response?.data?.message || error.message || "Request failed";
+      toast.error(msg);
     }
 
     // try {
