@@ -38,6 +38,11 @@ app.use("/api/v1/user", userRoute);
 app.use("/api/v1/blog", blogRoute);
 app.use("/api/v1/comment", commentRoute);
 
+// health check
+app.get("/health", (_, res) => {
+  res.status(200).json({ status: "ok" });
+});
+
 // Serve frontend only if dist exists (useful for backend-only deploy)
 import { existsSync } from "fs";
 const distPath = path.join(_dirname, "frontend", "dist");
