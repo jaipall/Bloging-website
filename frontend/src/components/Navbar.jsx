@@ -6,7 +6,7 @@ import Logo from "../assets/logo.png";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
-import axios from "axios";
+import http from "@/lib/http";
 import { setUser } from "@/redux/authSlice";
 import userLogo from "../assets/user.jpg";
 import { HiMenuAlt1, HiMenuAlt3 } from "react-icons/hi";
@@ -55,9 +55,7 @@ const Navbar = () => {
 
   const logoutHandler = async (e) => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/v1/user/logout`, {
-        withCredentials: true,
-      });
+      const res = await http.get(`/api/v1/user/logout`);
       if (res.data.success) {
         navigate("/");
         dispatch(setUser(null));

@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import http from "@/lib/http";
 import { toast } from "sonner";
 import auth from "../assets/auth.jpg";
 
@@ -31,16 +31,7 @@ const Signup = () => {
     console.log(user);
 
     try {
-      const response = await axios.post(
-        `http://localhost:3000/api/v1/user/register`,
-        user,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
+      const response = await http.post(`/api/v1/user/register`, user);
       if (response.data.success) {
         navigate("/login");
         toast.success(response.data.message);
