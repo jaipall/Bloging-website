@@ -21,17 +21,34 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 const allowedOriginsEnv = process.env.CORS_ORIGIN || "http://localhost:5173";
 const allowedOrigins = allowedOriginsEnv.split(",").map((o) => o.trim());
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-      return callback(new Error("Not allowed by CORS"));
-    },
-    credentials: true,
-  })
-);
+const matchOrigin = (origin) => {
+  if (!origin) return true;
+  if (allowedOrigins.includes(origin)) return true;
+  for (const pattern of allowedOrigins) {
+    if (pattern.includes("*")) {
+      const regex = new RegExp(
+        "^" +
+          pattern
+            .replace(/[-/\\^$+?.()|[\]{}]/g, "\\$&")
+            .replace(/\\\*/g, ".*") +
+          "$"
+      );
+      if (regex.test(origin)) return true;
+    }
+  }
+  return false;
+};
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (matchOrigin(origin)) return callback(null, true);
+    return callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+};
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 const _dirname = path.resolve();
 
