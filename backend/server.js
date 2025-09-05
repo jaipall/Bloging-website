@@ -17,9 +17,16 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
+const allowedOriginsEnv = process.env.CORS_ORIGIN || "http://localhost:5173";
+const allowedOrigins = allowedOriginsEnv.split(",").map((o) => o.trim());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
   })
 );
@@ -31,10 +38,15 @@ app.use("/api/v1/user", userRoute);
 app.use("/api/v1/blog", blogRoute);
 app.use("/api/v1/comment", commentRoute);
 
-app.use(express.static(path.join(_dirname, "/frontend/dist")));
-app.get("*", (_, res) => {
-  res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
-});
+// Serve frontend only if dist exists (useful for backend-only deploy)
+import { existsSync } from "fs";
+const distPath = path.join(_dirname, "frontend", "dist");
+if (existsSync(distPath)) {
+  app.use(express.static(distPath));
+  app.get("*", (_, res) => {
+    res.sendFile(path.join(distPath, "index.html"));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Server listen at port ${PORT}`);
