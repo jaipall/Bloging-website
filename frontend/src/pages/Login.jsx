@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import http from "@/lib/http";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/authSlice";
@@ -32,16 +32,7 @@ const Login = () => {
     console.log(input);
 
     try {
-      const response = await axios.post(
-        `http://localhost:3000/api/v1/user/login`,
-        input,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
+      const response = await http.post(`/api/v1/user/login`, input);
       if (response.data.success) {
         navigate("/");
         dispatch(setUser(response.data.user));

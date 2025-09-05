@@ -133,7 +133,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { setBlog } from "@/redux/blogSlice";
-import axios from "axios";
+import http from "@/lib/http";
 import { Loader2 } from "lucide-react";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -156,16 +156,7 @@ const CreateBlog = () => {
   const createBlogHandler = async () => {
     try {
       setLoading(true);
-      const res = await axios.post(
-        `http://localhost:3000/api/v1/blog/`,
-        { title, category },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
+      const res = await http.post(`/api/v1/blog/`, { title, category });
 
       if (res.data.success) {
         // ✅ Safe fallback for non-array blog

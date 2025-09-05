@@ -7,7 +7,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { useNavigate } from "react-router-dom";
 import { setBlog } from "@/redux/blogSlice";
-import axios from "axios";
+import http from "@/lib/http";
 
 const tags = [
   {
@@ -40,10 +40,7 @@ const RecentBlog = () => {
   useEffect(() => {
     const getAllPublsihedBlogs = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:3000/api/v1/blog/get-published-blogs`,
-          { withCredentials: true }
-        );
+        const res = await http.get(`/api/v1/blog/get-published-blogs`);
         if (res.data.success) {
           dispatch(setBlog(res.data.blogs));
         }
