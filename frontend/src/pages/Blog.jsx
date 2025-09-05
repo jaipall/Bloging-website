@@ -116,7 +116,7 @@ const Blog = () => {
   useEffect(() => {
     const getAllPublishedBlogs = async () => {
       try {
-        const res = await http.get(`/api/v1/blog/get-published-blogs`);
+        const res = await http.get(`/api/v1/blog/get-all-blogs`);
         if (res.data.success) {
           dispatch(setBlog(res.data.blogs));
         }

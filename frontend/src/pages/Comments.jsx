@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import axios from "axios";
+import http from "@/lib/http";
 import { Edit, Eye, Trash2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,10 +18,7 @@ const Comments = () => {
   const navigate = useNavigate();
   const getTotalComments = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:3000/api/v1/comment/my-blogs/comments`,
-        { withCredentials: true }
-      );
+      const res = await http.get(`/api/v1/comment/my-blogs/comments`);
       if (res.data.success) {
         setAllComments(res.data.comments);
       }
