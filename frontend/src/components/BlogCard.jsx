@@ -8,9 +8,10 @@ const BlogCard = ({ blog }) => {
   const formattedDate = date.toLocaleDateString("en-GB");
   return (
     <div className="bg-white dark:bg-gray-800 dark:border-gray-600 p-5 rounded-2xl shadow-lg border hover:scale-105 transition-all">
-      <img src={blog.thumbnail} alt="" className="rounded-lg" />
+      <img src={blog?.thumbnail} alt="" className="rounded-lg" />
       <p className="text-sm  mt-2">
-        By {blog.author.firstName} | {blog.category} | {formattedDate}
+        By {blog?.author?.firstName || "Unknown"} |{" "}
+        {blog?.category || "General"} | {formattedDate}
       </p>
       <h2 className="text-xl font-semibold  mt-1">{blog.title}</h2>
       <h3 className="text-gray-500 mt-1">{blog.subtitle}</h3>
