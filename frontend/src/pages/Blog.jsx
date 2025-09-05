@@ -107,7 +107,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setBlog } from "@/redux/blogSlice";
 import BlogCard from "@/components/BlogCard";
-import axios from "axios";
+import http from "@/lib/http";
 
 const Blog = () => {
   const dispatch = useDispatch();
@@ -116,12 +116,7 @@ const Blog = () => {
   useEffect(() => {
     const getAllPublishedBlogs = async () => {
       try {
-        const res = await axios.get(
-          `${
-            import.meta.env.VITE_API_BASE_URL
-          }/api/v1/blog/get-published-blogs`,
-          { withCredentials: true }
-        );
+        const res = await http.get(`/api/v1/blog/get-published-blogs`);
         if (res.data.success) {
           dispatch(setBlog(res.data.blogs));
         }

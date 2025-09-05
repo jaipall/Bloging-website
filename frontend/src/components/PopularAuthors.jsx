@@ -1,4 +1,4 @@
-import axios from "axios";
+import http from "@/lib/http";
 import React, { useEffect, useState } from "react";
 import userLogo from "../assets/user.jpg";
 
@@ -6,9 +6,7 @@ const PopularAuthors = () => {
   const [popularUser, setPopularUser] = useState([]);
   const getAllUsers = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:3000/api/v1/user/all-users`
-      );
+      const res = await http.get(`/api/v1/user/all-users`);
       if (res.data.success) {
         setPopularUser(res.data.users);
       }

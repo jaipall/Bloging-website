@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link, useNavigate } from "react-router-dom";
 import { Textarea } from "@/components/ui/textarea";
-import axios from "axios";
+import http from "@/lib/http";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { setUser } from "@/redux/authSlice";
@@ -69,16 +69,9 @@ const Profile = () => {
 
     try {
       setLoading(true);
-      const res = await axios.put(
-        `http://localhost:3000/api/v1/user/profile/update`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          withCredentials: true,
-        }
-      );
+      const res = await http.put(`/api/v1/user/profile/update`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       if (res.data.success) {
         setOpen(false);
         toast.success(res.data.message);

@@ -6,7 +6,7 @@ import { FaHeart, FaRegHeart } from "react-icons/fa6";
 import { LuSend } from "react-icons/lu";
 import { Button } from "./ui/button";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import http from "@/lib/http";
 import { toast } from "sonner";
 import { setBlog } from "@/redux/blogSlice";
 import { setComment } from "@/redux/commentSlice";
@@ -49,8 +49,8 @@ const CommentBox = ({ selectedBlog }) => {
   useEffect(() => {
     const getAllCommentsOfBlog = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:3000/api/v1/comment/${selectedBlog._id}/comment/all`
+        const res = await http.get(
+          `/api/v1/comment/${selectedBlog._id}/comment/all`
         );
         const data = res.data.comments;
         dispatch(setComment(data));
@@ -63,15 +63,9 @@ const CommentBox = ({ selectedBlog }) => {
 
   const commentHandler = async () => {
     try {
-      const res = await axios.post(
-        `http://localhost:3000/api/v1/comment/${selectedBlog._id}/create`,
-        { content },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
+      const res = await http.post(
+        `/api/v1/comment/${selectedBlog._id}/create`,
+        { content }
       );
       if (res.data.success) {
         let updatedCommentData;
@@ -101,12 +95,7 @@ const CommentBox = ({ selectedBlog }) => {
 
   const deleteComment = async (commentId) => {
     try {
-      const res = await axios.delete(
-        `https://mern-blog-ha28.onrender.com/api/v1/comment/${commentId}/delete`,
-        {
-          withCredentials: true,
-        }
-      );
+      const res = await http.delete(`/api/v1/comment/${commentId}/delete`);
       if (res.data.success) {
         const updatedCommentData = comment.filter(
           (item) => item._id !== commentId
@@ -124,16 +113,9 @@ const CommentBox = ({ selectedBlog }) => {
 
   const editCommentHandler = async (commentId) => {
     try {
-      const res = await axios.put(
-        `https://mern-blog-ha28.onrender.com/api/v1/comment/${commentId}/edit`,
-        { content: editedContent },
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const res = await http.put(`/api/v1/comment/${commentId}/edit`, {
+        content: editedContent,
+      });
 
       if (res.data.success) {
         const updatedCommentData = comment.map((item) =>
@@ -152,12 +134,7 @@ const CommentBox = ({ selectedBlog }) => {
 
   const likeCommentHandler = async (commentId) => {
     try {
-      const res = await axios.get(
-        `https://mern-blog-ha28.onrender.com/api/v1/comment/${commentId}/like`,
-        {
-          withCredentials: true,
-        }
-      );
+      const res = await http.get(`/api/v1/comment/${commentId}/like`);
 
       if (res.data.success) {
         const updatedComment = res.data.updatedComment;
